@@ -7,7 +7,7 @@ const counter = useMachine(counterMachine, {
 });
 
 const parent = useInterpret(parentMachine, {
-  // devTools: true,
+  devTools: true,
 });
 
 const { state: dataState } = useActor(parent.state.context.dataActor);

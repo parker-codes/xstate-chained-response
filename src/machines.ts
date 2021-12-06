@@ -31,10 +31,16 @@ const dataMachine = createMachine(
 
   {
     actions: {
-      respondWithData: respond((ctx) => ({
-        type: "QUERY_RESPONSE",
-        value: ctx.value,
-      })),
+      respondWithData: respond((ctx, event, meta) => {
+        console.log("respondWithData", {
+          event,
+          origin: meta._event.origin,
+        });
+        return {
+          type: "QUERY_RESPONSE",
+          value: ctx.value,
+        };
+      }),
       incrementValue: assign((ctx) => ({
         value: ctx.value + 1,
       })),
