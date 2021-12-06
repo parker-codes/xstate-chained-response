@@ -16,7 +16,6 @@ const dataMachine = createMachine(
           src: "incrementValueEverySecond",
         },
 
-        // TODO: update value every second
         on: {
           QUERY_UPDATED_DATA: {
             actions: ["respondWithData"],
@@ -106,17 +105,17 @@ export const parentMachine = createMachine(
       QUERY_UPDATED_DATA: {
         actions: ["forwardQuery"],
       },
-      //   QUERY_RESPONSE: {
-      //     actions: ["forwardQueryResponse"],
-      //   },
+      QUERY_RESPONSE: {
+        actions: ["forwardQueryResponse"],
+      },
     },
   },
 
   {
     actions: {
       forwardQuery: forwardTo((ctx) => ctx.dataActor),
-      // TODO: do we need to forward the reponse back?
-      //   forwardQueryResponse: forwardTo((ctx) => ctx.anotherActor),
+      // TODO: Why do we need to forward the reponse back?
+      forwardQueryResponse: forwardTo((ctx) => ctx.anotherActor),
     },
   }
 );
